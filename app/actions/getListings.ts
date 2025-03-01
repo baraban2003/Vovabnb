@@ -12,7 +12,7 @@ export interface IListingsParams {
 }
 
 export default async function getListings(
-  params: IListingsParams
+  params: Promise<IListingsParams>
 ) {
   try {
     const {
@@ -24,7 +24,7 @@ export default async function getListings(
       startDate,
       endDate,
       category,
-    } = params;
+    } = await params;
 
     let query: any = {};
 
@@ -90,7 +90,7 @@ export default async function getListings(
     }));
 
     return safeListings;
-  } catch (error) {
-    throw new Error(error instanceof Error ? error.message : String(error));
+  } catch (error: any) {
+    throw new Error(error);
   }
 }

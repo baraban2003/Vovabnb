@@ -10,10 +10,11 @@ import {
   SafeListing,
   SafeReservation,
   SafeUser
-} from "../../types";
+} from "@/app/types";
 
-import Button from "../Button";
 import HeartButton from "../HeartButton";
+import Button from "../Button";
+import ClientOnly from "../ClientOnly";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -22,7 +23,7 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: SafeUser | null;
+  currentUser?: SafeUser | null
 };
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -47,7 +48,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         return;
       }
 
-      onAction?.(actionId);
+      onAction?.(actionId)
     }, [disabled, onAction, actionId]);
 
   const price = useMemo(() => {
@@ -84,7 +85,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             rounded-xl
           "
         >
-          {data.imageSrc ? (
+          {data.imageSrc && (
             <Image
               fill
               className="
@@ -97,7 +98,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
               src={data.imageSrc}
               alt="Listing"
             />
-          ) : null}
+          )}
           <div className="
             absolute
             top-3
