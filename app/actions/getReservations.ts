@@ -50,6 +50,6 @@ export default async function getReservations(
 
     return safeReservations;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error instanceof Error ? error.message : String(error));
   }
 }

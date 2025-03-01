@@ -91,6 +91,6 @@ export default async function getListings(
 
     return safeListings;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error instanceof Error ? error.message : String(error));
   }
 }
