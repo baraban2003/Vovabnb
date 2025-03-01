@@ -1,4 +1,3 @@
-
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
 import getReservations from "@/app/actions/getReservations";
@@ -12,10 +11,10 @@ interface IParams {
   listingId?: string;
 }
 
-const ListingPage = async ({ params }: { params: IParams }) => {
-
-  const listing = await getListingById(params);
-  const reservations = await getReservations(params);
+const ListingPage = async ({ params }: { params: Promise<IParams> }) => {
+  const awaitedParams = await params;
+  const listing = await getListingById(awaitedParams);
+  const reservations = await getReservations(awaitedParams);
   const currentUser = await getCurrentUser();
 
   if (!listing) {
