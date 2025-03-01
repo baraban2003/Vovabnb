@@ -12,7 +12,6 @@ import {
   SafeUser
 } from "../../types";
 
-
 import Button from "../Button";
 import HeartButton from "../HeartButton";
 
@@ -23,7 +22,7 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: SafeUser | null
+  currentUser?: SafeUser | null;
 };
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -48,7 +47,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         return;
       }
 
-      onAction?.(actionId)
+      onAction?.(actionId);
     }, [disabled, onAction, actionId]);
 
   const price = useMemo(() => {
@@ -85,18 +84,20 @@ const ListingCard: React.FC<ListingCardProps> = ({
             rounded-xl
           "
         >
-          <Image
-            fill
-            className="
-              object-cover 
-              h-full 
-              w-full 
-              group-hover:scale-110 
-              transition
-            "
-            src={data.imageSrc}
-            alt="Listing"
-          />
+          {data.imageSrc ? (
+            <Image
+              fill
+              className="
+                object-cover 
+                h-full 
+                w-full 
+                group-hover:scale-110 
+                transition
+              "
+              src={data.imageSrc}
+              alt="Listing"
+            />
+          ) : null}
           <div className="
             absolute
             top-3
