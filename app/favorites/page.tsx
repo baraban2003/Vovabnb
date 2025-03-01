@@ -1,4 +1,3 @@
-
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
 
@@ -6,10 +5,11 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import getFavoriteListings from "@/app/actions/getFavoriteListings";
 
 import FavoritesClient from "./FavoritesClient";
+import { SafeUser } from '../types';
 
 const ListingPage = async () => {
   const listings = await getFavoriteListings();
-  const currentUser = await getCurrentUser();
+  const currentUser: SafeUser | null = await getCurrentUser();
 
   if (listings.length === 0) {
     return (
@@ -31,5 +31,5 @@ const ListingPage = async () => {
     </ClientOnly>
   );
 }
- 
+
 export default ListingPage;
