@@ -30,11 +30,11 @@ export default async function getListingById(
         ...listing.user,
         createdAt: listing.user.createdAt.toString(),
         updatedAt: listing.user.updatedAt.toString(),
-        emailVerified: 
+        emailVerified:
           listing.user.emailVerified?.toString() || null,
       }
     };
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(error);
   }
 }
