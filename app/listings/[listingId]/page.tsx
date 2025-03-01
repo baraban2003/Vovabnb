@@ -25,10 +25,20 @@ const ListingPage = async ({ params }: { params: Promise<IParams> }) => {
     );
   }
 
+  const transformedListing = {
+    ...listing,
+    createdAt: new Date(listing.createdAt).toISOString(),
+    user: {
+      ...listing.user,
+      createdAt: listing.user.createdAt ? new Date(listing.user.createdAt).toISOString() : '',
+      updatedAt: listing.user.updatedAt ? new Date(listing.user.updatedAt).toISOString() : '',
+    },
+  };
+
   return (
     <ClientOnly>
       <ListingClient
-        listing={listing}
+        listing={transformedListing}
         reservations={reservations}
         currentUser={currentUser}
       />
