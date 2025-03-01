@@ -9,8 +9,8 @@ interface IParams {
 }
 
 export async function POST(
-  request: NextRequest,
-  context: { params: IParams } // Change to context to await params
+  req: NextRequest, // Change to NextRequest
+  context: { params: Promise<IParams> } // Change params to a Promise
 ) {
   const currentUser = await getCurrentUser();
 
@@ -42,7 +42,7 @@ export async function POST(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: IParams } // Change to context to await params
+  context: { params: Promise<IParams> } // Change params to a Promise
 ) {
   const currentUser = await getCurrentUser();
 
