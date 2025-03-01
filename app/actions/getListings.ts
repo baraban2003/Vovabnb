@@ -12,7 +12,7 @@ export interface IListingsParams {
 }
 
 export default async function getListings(
-  params: Promise<IListingsParams>
+  params: IListingsParams
 ) {
   try {
     const {
@@ -24,7 +24,7 @@ export default async function getListings(
       startDate,
       endDate,
       category,
-    } = await params;
+    } = params;
 
     let query: any = {};
 
